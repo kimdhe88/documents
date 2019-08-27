@@ -15,3 +15,4 @@
 - [JSON API](https://jsonapi.org/)
 - [markdown-toc](https://ecotrust-canada.github.io/markdown-toc/) - 마크다운 목차생성기
 - [gitignore](https://www.gitignore.io/) - gitignore 생성 사이트
+- [sequelize.js](https://sequelize.org/master/) - sequelize.js documents
