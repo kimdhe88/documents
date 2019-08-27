@@ -7,7 +7,7 @@
 - Install [Git Desktop](https://desktop.github.com/) with repository management tools
 
 
-## nvm, node, npm 
+## nvm, node, npm
 - First install [nvm](https://github.com/coreybutler/nvm-windows) for Windows.
 - Install the latest version of [node.js](https://nodejs.org/ko/) with nvm installed by running **cmd.exe**. **npm** will be installed automatically.
   - `win + R` to open the **cmd.exe** window.
