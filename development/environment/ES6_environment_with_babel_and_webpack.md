@@ -18,6 +18,7 @@ ES6+(ES6 이상의 버전)를 사용하여 프로젝트를 진행하려면 ES6+�
 > 6.9.0
 
 # 1. Babel
+
 ## 1.2 Babel이란?
 
 Babel은 ES6+ 코드를 ES5 이하의 버전으로 트랜스파일링한다.
@@ -33,13 +34,15 @@ Babel은 ES6+ 코드를 ES5 이하의 버전으로 트랜스파일링한다.
 // ES5
 "use strict";
 
-[1, 2, 3].map(function (n) {
+[1, 2, 3].map(function(n) {
   return Math.pow(n, n);
 });
 ```
 
 # webpack
+
 ## webpack 이란?
+
 웹팩은 프로젝트의 구조를 분석하고 자바스크립트 모듈을 비롯한 관련 리소스들을 찾은 다음 이를 브라우저에서 이용할 수 있는 번들로 묶고 패킹하는 모듈 번들러(Module bundler)다.
 
 # npm package 설치
@@ -49,51 +52,58 @@ npm install --save--dev @babel/cli @babel/core @babel/preset-env babel-loader
 npm install --save--dev webpack webpack-cli webpack-node-externals
 ```
 
-| package name           | description                                 |
-| :--------------------- | :------------------------------------------ |
-| @babel/cli             | command line을 통해 코드를 transpile 할 수 있는 도구    |
-| @babel/core            | transpile을 수행하는 패키지                         |
-| @babel/preset-env      | 브라우저 환경에 맞는 구문 변환 관리 패키지                    |
+| package name           | description                                                |
+| :--------------------- | :--------------------------------------------------------- |
+| @babel/cli             | command line을 통해 코드를 transpile 할 수 있는 도구       |
+| @babel/core            | transpile을 수행하는 패키지                                |
+| @babel/preset-env      | 브라우저 환경에 맞는 구문 변환 관리 패키지                 |
 | babel-loader           | webpack에서 babel을 이용해 transpile 하기 하기 위한 패키지 |
-| webpack                | 모듈 번들러                                      |
-| webpack-cli            |                                             |
-| webpack-node-externals | node.js 구동 용 node target으로 실행하기 위한 패키지      |
+| webpack                | 모듈 번들러                                                |
+| webpack-cli            |                                                            |
+| webpack-node-externals | node.js 구동 용 node target으로 실행하기 위한 패키지       |
 
-패치지 설치가 완료되면 webpack.config.js 파일을 생성한다. 
+패치지 설치가 완료되면 webpack.config.js 파일을 생성한다.
 
 ```javascript
-const webpack = require('webpack');
-const path = require('path');
-const nodeExternals = require('webpack-node-externals')
+const webpack = require("webpack");
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
-  target: 'node',
+  target: "node",
   externals: [nodeExternals()],
-    entry: './server.js',
-    output: {
-        path: path.resolve(__dirname, 'public'),
-        publicPath: '/public/',
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                include: path.join(__dirname),
-                exclude: /(node_modules)|(public)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
+  entry: "./app.js",
+  output: {
+    path: path.resolve(__dirname, "build"),
+    publicPath: "/build/",
+    filename: "bundle.js"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.join(__dirname),
+        exclude: /(node_modules)|(build)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: [
+              [
+                "@babel/preset-env",
+                {
+                  targets: { chrome: 55 }
                 }
-            }
-        ]
-    }
+              ]
+            ]
+          }
+        }
+      }
+    ]
+  }
 };
 ```
 
-다음으로 package.json 에서 webpack을 통한 번들링 후 node를 실행할 수 있도록 다음과 같이 수정한다. 
+다음으로 package.json 에서 webpack을 통한 번들링 후 node를 실행할 수 있도록 다음과 같이 수정한다.
 
 ```json
   "scripts": {
@@ -103,7 +113,8 @@ module.exports = {
   },
 ```
 
-다음 명령어로 테스트 진행한다. 
+다음 명령어로 테스트 진행한다.
+
 ```bash
 $ npm run dev
 > backend@1.0.0 dev D:\development\repositories\Gtihub\petra-manual\backend
@@ -131,14 +142,15 @@ ES6
 function allAdd() {
     return Array.from(arguments).map(a => a + 2);
 ```
+
 위 코드는 babel에 의해 다음과 같이 transpile됩니다.
 
 ```javascript
-ES5
+ES5;
 function allAdd() {
-    return Array.from(argument).map(function(a) {
-        return a + 2;
-    });
+  return Array.from(argument).map(function(a) {
+    return a + 2;
+  });
 }
 ```
 
@@ -149,11 +161,13 @@ babel-polyfill 사용을 위해서 다음과 같이 npm을 설치해줍니다.
 ```bash
 $ npm install --save-dev babel-polyfill
 ```
+
 그리고 해당 polyfill이 필요한 곳에서 import해줍니다.
 
 ```javascript
-import 'babel-polyfill';
+import "babel-polyfill";
 ```
+
 만약 webpack과 함께 사용한다면 entry point에 babel-polyfill을 추가해줍니다.
 
 ```javascript
