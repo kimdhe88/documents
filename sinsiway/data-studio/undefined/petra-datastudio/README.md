@@ -42,3 +42,15 @@ get Sample API
 {% endapi-method-spec %}
 {% endapi-method %}
 
+{% hint style="info" %}
+힌트는 이렇게 
+{% endhint %}
+
+{% page-ref page="../undefined.md" %}
+
+
+
+여기서 [링크](../undefined.md)를 걸면 어떻게되는거지?
+
+
+
