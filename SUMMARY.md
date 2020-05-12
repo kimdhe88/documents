@@ -6,7 +6,7 @@
     * [기능정의서](sinsiway/data-studio/undefined/README.md)
       * [Petra DataStudio 기능정의서](sinsiway/data-studio/undefined/petra-datastudio/README.md)
         * [Untitled](sinsiway/data-studio/undefined/petra-datastudio/untitled.md)
-      * [여기서 이름이 바뀌면?](sinsiway/data-studio/undefined/undefined.md)
+      * [한번 더 바꾸기](sinsiway/data-studio/undefined/undefined.md)
     * [요구사항 정의서](sinsiway/data-studio/undefined-1/README.md)
       * [Petra Data Studio 요구사항 정의서](sinsiway/data-studio/undefined-1/petra-data-studio.md)
   * [releasenotes](sinsiway/releasenotes/README.md)
